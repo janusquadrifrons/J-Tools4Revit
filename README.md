@@ -13,7 +13,7 @@ Revit tool chest for practicality improvement.
 
 #### J_SELECTSIMILAR
 -Function        : Selects same <objecttype> objects with similar properties. \
--Purpose         : Model manipulation. ↓
+-Purpose         : Model manipulation. 
   
 #### J_SELDEL_DIM
 -Function        : Delete Dimensions in selected region. \
