@@ -9,9 +9,7 @@ Revit tool chest for practicality improvement.
 
 #### J_SELDEL_PT
 -Function        : Delete 3DPoints in selected objects. \
--Purpose         : Point cloud manipulation. ↓
-
-![J_ProjectToLine](images/J_SelDel_Pt.gif)
+-Purpose         : Point cloud manipulation. 
 
 #### J_SELECTSIMILAR
 -Function        : Selects same <objecttype> objects with similar properties. \
