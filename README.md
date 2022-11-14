@@ -1,9 +1,9 @@
-# Revit-Kit
+# Revit-Kit -UNDER CONSRTUCTION- 
 Revit tool chest for practicality improvement. 
 
 ## Basic Explanation / Usage of Commands :
 
-#### J_TRIM   
+#### J_TRIM  
 -Function        : Trim elements the regular way. \
 -Purpose         : Practicality by eliminating User input.
 
