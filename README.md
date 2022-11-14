@@ -11,7 +11,7 @@ Revit tool chest for practicality improvement.
 -Function        : Delete 3DPoints in selected objects. \
 -Purpose         : Point cloud manipulation. ↓
 
-![J_ProjectToLine](images/J_LineFromOrigin.gif)
+![J_ProjectToLine](images/J_SelDel_Pt.gif)
 
 #### J_SELECTSIMILAR
 -Function        : Selects same <objecttype> objects with similar properties. \
@@ -21,5 +21,5 @@ Revit tool chest for practicality improvement.
 -Function        : Delete Dimensions in selected region. \
 -Purpose         : Eliminating unnecessary annotation objects. ↓  
   
-![J_ProjectToLine](images/J_ProjectToLine.gif)
+![J_ProjectToLine](images/J_SelDel_Dim.gif)
 
