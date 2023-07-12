@@ -47,12 +47,22 @@ namespace J_Tools
             button6.ToolTip = "ooo";
             button6.LongDescription = "xxx";
 
+            var button_09 = new PushButtonData("J Tools button_09", "J_ViewToFace", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_09");
+            button_09.ToolTip = "Aligns 3D view to a selected planar face.";
+            button_09.LongDescription = "xxx";
+
+            var button_00_deneme = new PushButtonData("J Tools Deneme", "J_Deneme", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_00_Deneme");
+
+
+
 
             // --- add buttons to the panel
             PushButton btn1 = panel.AddItem(button1) as PushButton;
             //panel.AddStackedItems(button2, button3);
             IList<RibbonItem> stackedButtons = panel.AddStackedItems(button4, button3, button6);
             //PushButton btn4 = panel.AddItem(button4) as PushButton;
+            PushButton btn9 = panel.AddItem(button_09) as PushButton;
+            // PushButton btn0_deneme = panel.AddItem(button_00_deneme) as PushButton;
 
             // --- creating icons
             BitmapImage icon_button1 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/trim-100c.png"));
@@ -60,6 +70,7 @@ namespace J_Tools
             //BitmapImage icon_button1 = new BitmapImage(new Uri(@"C:\E:\98 cs\REVIT API\J_Tools\J_Tools\Resources\trim-100c.png"));
             BitmapImage icon_button2 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/injection-12.png"));
             BitmapImage icon_button3 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/multiple-12.png"));
+            BitmapImage icon_button9 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/zoom-32.png"));
             // --- assigning icons
             //button1.LargeImage = icon_button1;
             btn1.LargeImage = icon_button1;
@@ -67,6 +78,7 @@ namespace J_Tools
             button2.LargeImage = icon_button2;
             button3.Image = icon_button3;
             button3.LargeImage = icon_button3;
+            button_09.LargeImage = icon_button9;
             
 
             return Result.Succeeded;
