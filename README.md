@@ -3,6 +3,10 @@ Revit tool chest for practicality improvement.
 
 ## Basic Explanation / Usage of Commands :
 
+#### J_VIEWTOFACE 
+-Function        : Orients active view according to a selected face. \
+-Purpose         : Smoother 2D operations on 3D models.
+
 #### J_TRIM  
 -Function        : Trim elements the regular way. \
 -Purpose         : Practicality by eliminating User input.
