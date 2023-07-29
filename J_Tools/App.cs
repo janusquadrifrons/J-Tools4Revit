@@ -53,30 +53,37 @@ namespace J_Tools
             button_09.ToolTip = "Aligns 3D view to a selected planar face.";
             // button_09.LongDescription = "xxx";
 
-            // --- Drafting 
-            // var button_00_deneme = new PushButtonData("J Tools Deneme", "J_Deneme", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_00_Deneme");
+            var button_10 = new PushButtonData("J Tools button_10", "J_QRCoder", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_10_QRCoder");
+            button_10.ToolTip = "Stigmatize model with a QR Code";
+            button_10.LongDescription = "Run immeadiately before/after saving your model. Guarantee the authanticity of your model. Prevent vendor malpractice. ";
+
+            var button_00_deneme = new PushButtonData("J Tools Deneme", "J_Deneme", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_00_Deneme");
             #endregion
 
 
-            // --- add buttons to the panel
+            // --- Add buttons to the panel
             PushButton btn1 = panel.AddItem(button1) as PushButton;
             //panel.AddStackedItems(button2, button3);
             IList<RibbonItem> stackedButtons = panel.AddStackedItems(button4, button3, button6);
             //PushButton btn4 = panel.AddItem(button4) as PushButton;
             PushButton btn9 = panel.AddItem(button_09) as PushButton;
-            // PushButton btn0_deneme = panel.AddItem(button_00_deneme) as PushButton;
+            PushButton btn10 = panel.AddItem(button_10) as PushButton;
 
-            // --- creating icons
+            PushButton btn0_deneme = panel.AddItem(button_00_deneme) as PushButton;
+
+            // --- Creating icons
             BitmapImage icon_button1 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/trim-100c.png"));
             //BitmapImage icon_button1 = new BitmapImage(new Uri("Resources/trim-100c.png", UriKind.Relative));
             //BitmapImage icon_button1 = new BitmapImage(new Uri(@"C:\E:\98 cs\REVIT API\J_Tools\J_Tools\Resources\trim-100c.png"));
             BitmapImage icon_button2 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/injection-12.png"));
             BitmapImage icon_button3 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/multiple-12.png"));
-            BitmapImage icon_button9 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/icons8-rotate-32.png"));
+            BitmapImage icon_button9 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/rotate-32.png"));
+            BitmapImage icon_button10= new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/qr-code-32.png"));
             
-            // --- assigning icons
+            // --- Assigning icons
             btn1.LargeImage = icon_button1;
             btn9.LargeImage = icon_button9;
+            btn10.LargeImage = icon_button10;
 
             return Result.Succeeded;
         }
