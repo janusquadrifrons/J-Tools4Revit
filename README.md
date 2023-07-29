@@ -7,6 +7,10 @@ Revit tool chest for practicality improvement.
 -Function        : Adds timestamp to model in QR code format. \
 -Purpose         : Making the model revision-proof by 3rd parties.
 
+#### J_QRDECODER 
+-Function        : Checks valid timestamp of model created with deployment. \
+-Purpose         : Making the model revision-proof by 3rd parties.
+
 #### J_VIEWTOFACE 
 -Function        : Orients active view according to a selected face. \
 -Purpose         : Smoother 2D operations on 3D models.
