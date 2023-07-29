@@ -1,125 +1,84 @@
-﻿
-#region Namespaces
+﻿#region Namespaces
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
 
-//  Autodesk.Revit.ApplicationServices;
-using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.UI.Selection;
-using J_Tools.Extensions.SelectionExtensions;
-using System.Drawing.Text;
-using System.Drawing;
+using Autodesk.Revit.Attributes;
 
-// QR Coder package
 using QRCoder;
-using System.Drawing.Imaging;
-using System.IO;
 #endregion
-
 
 namespace J_Tools
 {
     [Transaction(TransactionMode.Manual)]
+
     public class Command_10_QRCoder : IExternalCommand
     {
-        public Result Execute(
-            ExternalCommandData commandData,
-            ref string message,
-            ElementSet elements)
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            try
+            Document doc = commandData.Application.ActiveUIDocument.Document;
+
+            // --- Get the current date and time.
+            DateTime currentDateTime = DateTime.Now;
+            string dateTimeString = currentDateTime.ToString("yyyyMMddHHmmss");
+
+            // --- Generate the QR code data.
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(dateTimeString, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+
+            // --- Save Bitmap qrCodeImage to a file.
+            string fileName = "E:\\QRCode.png";
+            qrCodeImage.Save(fileName, ImageFormat.Png);
+
+            using (Transaction tx = new Transaction(doc, "Create QR Code Stamp"))
             {
-                // --- Declerations : Accesing Revit Document and UI
-                UIApplication uiapp = commandData.Application;
-                UIDocument uidoc = uiapp.ActiveUIDocument;
-                // Application app = uiapp.Application;
-                Document doc = uidoc.Document;
-
-                // --- Declerations : 
-                Bitmap qrCodeImage;
-
-                // --- Declerations :
-                SharedParameterElement spe = CommandUtils.CreateSharedParameter(doc, "QRCode", ParameterType.Text, BuiltInParameterGroup.PG_TEXT, true);
-
-                // Bind and name binding
-                spe.UniqueId;
-                doc.ParameterBindings.Insert(spe, doc.ProjectInformation.Name, doc.ProjectInformation);
-
-                // --- Helper function of acquiring system date time
-                string GetDateTimeString()
+                try
                 {
-                    DateTime currentDateTime = DateTime.Now;
-                    string datetimeString = currentDateTime.ToString("yyyyMMddHHmmss");
+                    tx.Start();
 
-                    return datetimeString;
-                }
+                    // --- Check model if an image contain "QRCode" string at its name. 
+                    FilteredElementCollector collector2 = new FilteredElementCollector(doc);
+                    collector2.OfClass(typeof(ImageType)); // -→ Get all image types in the model.
+                    List<Element> imageTypes2 = collector2.ToElements().ToList(); // -→ Convert the collector to a list.
 
-                // --- Helper function of generating QR code image
-                Bitmap GenerateQRCode(string dateTimeString)
-                {
-                    // --- Create instance of QR code generator
-                    QRCodeGenerator qrGenerator = new QRCodeGenerator();
-
-                    // --- Create QR code data
-                    QRCodeData qrCodeData = qrGenerator.CreateQrCode(dateTimeString, QRCodeGenerator.ECCLevel.Q);
-
-                    // --- Create QR code with specific size
-                    QRCode qrCode = new QRCode(qrCodeData);
-                    qrCode.GetGraphic(20);
-
-                    // --- Conver QR code to bitmap image
-                    Bitmap qrImage = qrCode.GetGraphic(20);
-
-                    return qrImage;
-                }
-
-                // --- Helper function of converting image to Base64 string
-                string ConvertImageToBase64(Bitmap image)
-                {
-                    using (MemoryStream ms = new MemoryStream())
+                    foreach (Element image in imageTypes2) // -→ Loop through the list.
                     {
-                        image.Save(ms, ImageFormat.Png);
-                        byte[] imageBytes = ms.ToArray();
-
-                        return Convert.ToBase64String(imageBytes);
+                        if (image.Name.Contains("QRCode")) // -→ If an image contains "QRCode" string in its name, delete it.
+                        {
+                            doc.Delete(image.Id);
+                        }
                     }
+
+                    // --- Get the view name of current view
+                    View currentView = doc.ActiveView;
+
+                    // --- Create an image type
+                    ImageType imageType = ImageType.Create(doc, fileName);
+
+                    // --- Get ElementId of the imageType then convert it to Element
+                    ElementId imageTypeId = imageType.Id;
+                    Element element = imageType as Element;
+
+                    // --- Import image 
+                    ImageImportOptions imageImportOptions = new ImageImportOptions();
+                    doc.Import(fileName, imageImportOptions, currentView, out element);
+
+                    // --- Delete QRCode.png from the disk
+                    System.IO.File.Delete(fileName);
+
+                    tx.Commit();
+
+                    return Result.Succeeded;
                 }
-
-                // --- Systen datetime call
-                string dateTime = GetDateTimeString();
-
-                // --- Generate QR Code Image
-                qrCodeImage = GenerateQRCode(dateTime);
-
-                // --- Define the QR code family
-                string qrCodeFamilyPath = "C:\\ProgramData\\Autodesk\\RVT 2017\\Libraries\\US_Metric\\J_Tools\\QR Code.rfa";
-                Family qrCodeFamily = doc.LoadFamily(qrCodeFamilyPath);
-
-                // --- Family and family symbol
-                FamilySymbol qrCodeSymbol = null;
-
-                if (qrCodeFamily != null)
-                {
-                    qrCodeSymbol = new FamilySymbol(doc);
-
-                    /// Look up string parameter 
-                    Parameter qrCodeParam = qrCodeSymbol.LookupParameter("QRCode");
-
-                    // Set value to the Base64 encoded image  
-                    qrCodeParam.Set(ConvertImageToBase64(qrCodeImage));
-                }
-
-                return Result.Succeeded;
+                catch (Autodesk.Revit.Exceptions.OperationCanceledException) { return Result.Cancelled; }
+                catch (Exception ex) { message = ex.Message; return Result.Failed; }
             }
-
-            catch (Autodesk.Revit.Exceptions.OperationCanceledException) { return Result.Cancelled; }
-            catch (Exception ex) { message = ex.Message; return Result.Failed; }
         }
     }
 }
