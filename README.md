@@ -15,6 +15,8 @@ Revit tool chest for practicality improvement.
 -Function        : Orients active view according to a selected face. \
 -Purpose         : Smoother 2D operations on 3D models.
 
+![J_ProjectToLine](images/J_ViewToFace.gif)
+
 #### J_TRIM  
 -Function        : Trim elements the regular way. \
 -Purpose         : Practicality by eliminating User input.
