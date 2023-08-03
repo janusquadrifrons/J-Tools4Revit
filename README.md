@@ -1,4 +1,4 @@
-# Revit-Kit -UNDER CONSRTUCTION- 
+# Revit-Kit 
 Revit tool chest for practicality improvement. 
 
 ## Basic Explanation / Usage of Commands :
@@ -17,7 +17,7 @@ Revit tool chest for practicality improvement.
 
 ![J_ProjectToLine](images/J_ViewToFace.gif)
 
-#### J_TRIM  
+#### J_TRIM  -UNDER CONSRTUCTION-
 -Function        : Trim elements the regular way. \
 -Purpose         : Practicality by eliminating User input.
 
@@ -25,7 +25,7 @@ Revit tool chest for practicality improvement.
 -Function        : Delete 3DPoints in selected objects. \
 -Purpose         : Point cloud manipulation. 
 
-#### J_SELECTSIMILAR
+#### J_SELECTSIMILAR  -UNDER CONSRTUCTION-
 -Function        : Selects same <objecttype> objects with similar properties. \
 -Purpose         : Model manipulation. 
   
