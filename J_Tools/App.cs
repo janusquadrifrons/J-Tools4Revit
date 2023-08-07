@@ -55,7 +55,15 @@ namespace J_Tools
 
             var button_10 = new PushButtonData("J Tools button_10", "J_QRCoder", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_10_QRCoder");
             button_10.ToolTip = "Stigmatize model with a QR Code";
-            button_10.LongDescription = "Run immeadiately before/after saving your model. Guarantee the authanticity of your model. Prevent vendor malpractice. ";
+            button_10.LongDescription = "Run immeadiately before/after saving your model. Guarantee the authanticity of your model. Prevent vendor/contractor malpractice. ";
+
+            var button_11 = new PushButtonData("J Tools button_11", "J_QRDecoder", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_11_QRDecoder");
+            button_11.ToolTip = "Validate the QR Code Timestamp";
+            button_11.LongDescription = "Check vendor/contractor malpractice of invalid versioning by catching valid QR coded timestamp.";
+
+            var button_12 = new PushButtonData("J Tools button_12", "J_ModelChecker", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_12_ModelChecker");
+            button_12.ToolTip = "Check the model for errors";
+            button_12.LongDescription = "Check the model for views without view templates, views placed on deleted sheets etc...";
 
             var button_00_deneme = new PushButtonData("J Tools Deneme", "J_Deneme", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_00_Deneme");
             #endregion
@@ -68,6 +76,8 @@ namespace J_Tools
             //PushButton btn4 = panel.AddItem(button4) as PushButton;
             PushButton btn9 = panel.AddItem(button_09) as PushButton;
             PushButton btn10 = panel.AddItem(button_10) as PushButton;
+            PushButton btn11 = panel.AddItem(button_11) as PushButton;
+            PushButton btn12 = panel.AddItem(button_12) as PushButton;
 
             PushButton btn0_deneme = panel.AddItem(button_00_deneme) as PushButton;
 
@@ -78,12 +88,15 @@ namespace J_Tools
             BitmapImage icon_button2 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/injection-12.png"));
             BitmapImage icon_button3 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/multiple-12.png"));
             BitmapImage icon_button9 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/rotate-32.png"));
-            BitmapImage icon_button10= new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/qr-code-32.png"));
+            BitmapImage icon_button10 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/qr-code-32.png"));
+            BitmapImage icon_button11 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/qr-read-32.png"));
+            
             
             // --- Assigning icons
             btn1.LargeImage = icon_button1;
             btn9.LargeImage = icon_button9;
             btn10.LargeImage = icon_button10;
+            btn11.LargeImage = icon_button11;
 
             return Result.Succeeded;
         }
