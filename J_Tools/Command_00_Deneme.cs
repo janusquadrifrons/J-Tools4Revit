@@ -1,15 +1,14 @@
 ﻿#region Namespaces
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Drawing;
-using System.Drawing.Imaging;
 
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.Attributes;
 
-using QRCoder;
+using System.IO;
+using System.Windows;
+using System.Collections.Generic;
 #endregion
 
 namespace J_Tools
@@ -18,25 +17,44 @@ namespace J_Tools
 
     public class Command_00_Deneme : IExternalCommand
     {
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        public Autodesk.Revit.UI.Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+            // --- Accessing Revit UI and corresponding databases
             Document doc = commandData.Application.ActiveUIDocument.Document;
 
-            using (Transaction tx = new Transaction(doc, "Create QR Code Stamp"))
+            // --- List to store initial element ids.
+            List<ElementId> viewsWithoutTemplates = ChechViewsWithoutTemplates(doc);
+
+            // --- Display Results
+            TaskDialog.Show("Views without templates", "There are " + viewsWithoutTemplates.Count + " views without templates in the model.");
+
+            return Result.Succeeded;
+        }
+
+        // --- Helper function : Check for views without view templatesi
+        private List<ElementId> ChechViewsWithoutTemplates(Document doc)
+        {
+            // --- List to store view ids without templates.
+            List<ElementId> viewsWithoutTemplates = new List<ElementId>();
+
+            // --- Get all views in the model.
+            FilteredElementCollector viewCollector = new FilteredElementCollector(doc);
+            viewCollector.OfClass(typeof(View));
+
+            // --- Loop over the views and check if they have view templates.
+            foreach (View view in viewCollector)
             {
-                try
+                // --- Check if view template is invalid.
+                if (view.ViewTemplateId.IntegerValue < 0)
                 {
-                    tx.Start();
-
-                    // xxx
-
-                    tx.Commit();
-
-                    return Result.Succeeded;
+                    viewsWithoutTemplates.Add(view.Id);
                 }
-                catch (Autodesk.Revit.Exceptions.OperationCanceledException) { return Result.Cancelled; }
-                catch (Exception ex) { message = ex.Message; return Result.Failed; }
             }
+
+            // Return the list of views without templates.
+            return viewsWithoutTemplates;
+
         }
     }
 }
+
