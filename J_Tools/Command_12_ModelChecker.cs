@@ -23,6 +23,8 @@ namespace J_Tools
             // --- Generate report instance
             CheckReport report = new CheckReport();
 
+
+
             // --- Run checks
             CheckViewsWithoutTemplates(doc, report);
             CheckOrphanedViews(doc, report);
@@ -83,7 +85,8 @@ namespace J_Tools
                 Parameter placedOnSheet = view.get_Parameter(BuiltInParameter.VIEWPORT_SHEET_NUMBER);
 
                 // --- Check if sheet is deleted
-                if(placedOnSheet.AsInteger() == 0)
+                //if(placedOnSheet.AsInteger() == 0)
+                if(placedOnSheet != null && placedOnSheet.HasValue && placedOnSheet.AsString() == "") // -→ Another way to check for empty sheet number
                 {
                     orphanedViews.Add(view.Id);
                     viewsList.Add(view.Name);
