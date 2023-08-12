@@ -3,9 +3,17 @@ Revit tool chest for practicality improvement.
 
 ## Basic Explanation / Usage of Commands :
 
+#### J_MODELCHECKER 
+-Function        : Querries the model for issues and reports them. \
+-Purpose         : Enforce quality control.
+
+![J_ProjectToLine](images/J_ModelChecker.png)
+
 #### J_QRCODER 
 -Function        : Adds timestamp to model in QR code format. \
 -Purpose         : Making the model revision-proof by 3rd parties.
+
+![J_ProjectToLine](images/J_QrCoder.png)
 
 #### J_QRDECODER 
 -Function        : Checks valid timestamp of model created with deployment. \
