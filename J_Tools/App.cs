@@ -90,6 +90,7 @@ namespace J_Tools
             BitmapImage icon_button9 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/rotate-32.png"));
             BitmapImage icon_button10 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/qr-code-32.png"));
             BitmapImage icon_button11 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/qr-read-32.png"));
+            BitmapImage icon_button12 = new BitmapImage(new Uri("pack://application:,,,/J_Tools;component/Resources/modelchecker-32.png"));
             
             
             // --- Assigning icons
@@ -97,6 +98,7 @@ namespace J_Tools
             btn9.LargeImage = icon_button9;
             btn10.LargeImage = icon_button10;
             btn11.LargeImage = icon_button11;
+            btn12.LargeImage = icon_button12;
 
             return Result.Succeeded;
         }
