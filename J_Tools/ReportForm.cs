@@ -30,9 +30,17 @@ namespace J_Tools
             // --- Populate text box
 
             textBox1.Multiline = true;
-            textBox1.Text += "Views without templates :" + report.ViewsWithoutTemplates + Environment.NewLine;
-            textBox1.Text += "Orphaned views without sheets :" + report.OrphanedViews + Environment.NewLine;
-            textBox1.Text += "Orphaned views list :" + report.ViewsListString + Environment.NewLine;
+            textBox1.ScrollBars = ScrollBars.Vertical; 
+            textBox1.Text += "Model Checker Report" + Environment.NewLine;
+            textBox1.Text += "---------------------" + Environment.NewLine;
+            textBox1.Text += "All views list : " + report.AllViewsString + Environment.NewLine;
+            textBox1.Text += "Views without templates : " + report.ViewsWithoutTemplates + Environment.NewLine;
+            textBox1.Text += "Adopted views with sheets : " + report.AdoptedViews + Environment.NewLine;
+            textBox1.Text += "Adopted view names : " + report.ViewsListString + Environment.NewLine;
+            textBox1.Text += "Adopted view sheet numbers : " + report.SheetNumbersString + Environment.NewLine;
+            textBox1.Text += "---------------------" + Environment.NewLine;
+            textBox1.Text += "Elements far from origin : " + report.ElementsFarFromOrigin + Environment.NewLine;
+            textBox1.Text += "Elements far from origin Ids : " + report.ElementsFarFromOriginIds + Environment.NewLine;
         }
 
         // --- Event handler for form load
