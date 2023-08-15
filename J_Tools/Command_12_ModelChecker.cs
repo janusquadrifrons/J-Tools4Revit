@@ -2,6 +2,7 @@
  * for overlapping elements like walls and floors, for elements with invalid/corrupt geometries,
  * for elements with missing required parameters, for inconsistencies between linked models,
  * for incorrect family categories usage, for modelspace view deletions.
+ * 230815 TODOS : Inconsistencty in modelchecker() : CheckOerlappingW() 
 */
 
 #region Namespaces
