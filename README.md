@@ -35,7 +35,7 @@ Revit tool chest for practicality improvement.
 -Function        : Delete 3DPoints in selected objects. \
 -Purpose         : Point cloud manipulation. 
 
-#### J_SELECTSIMILAR  -UNDER CONSRTUCTION-
+#### J_SELECTSIMILAR
 -Function        : Selects same <objecttype> objects with similar properties. \
 -Purpose         : Model manipulation. 
   
