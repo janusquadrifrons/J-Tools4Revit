@@ -37,7 +37,7 @@ namespace J_Tools
             button2.ToolTip = "Quick Style Painter";
             button2.LongDescription = "Match style properties of entities as in ArchiCad...";
 
-            var button3 = new PushButtonData("J Tools button3", "J_SelectSimilar", Assembly.GetExecutingAssembly().Location, "J_Tools.Command3");
+            var button3 = new PushButtonData("J Tools button3", "J_SelectSimilar", Assembly.GetExecutingAssembly().Location, "J_Tools.Command_03_SelectSimilar");
             button3.ToolTip = "Sibling Selector";
             button3.LongDescription = "Select similar entities with similar styles as in AutoCad...";
 
