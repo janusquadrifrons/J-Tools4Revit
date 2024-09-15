@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Command J_Tools</Text>
+    <Description>J_Tools Hasteners for Revit 2017</Description>
+    <Assembly>J_Tools.dll</Assembly>
+    <FullClassName>J_Tools.Command</FullClassName>
+    <ClientId>F3FE64E2-DD06-478D-BB39-0D781A21AE9D</ClientId>
+    <VendorId>janusquasrifrons</VendorId>
+    <VendorDescription>https://github.com/janusquadrifrons?tab=repositories</VendorDescription>
+  </AddIn>
+  <AddIn Type="Application">
+    <Name>Application J_Tools</Name>
+    <Assembly>J_Tools.dll</Assembly>
+    <FullClassName>J_Tools.App</FullClassName>
+    <ClientId>58022A6B-49F4-4FB7-B168-5C14B9049F9A</ClientId>
+    <VendorId>janusquasrifrons</VendorId>
+    <VendorDescription>https://github.com/janusquadrifrons?tab=repositories</VendorDescription>
+  </AddIn>
+</RevitAddIns>
