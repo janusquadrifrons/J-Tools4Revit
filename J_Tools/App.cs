@@ -72,8 +72,7 @@ namespace J_Tools
             // --- Add buttons to the panel
             PushButton btn1 = panel.AddItem(button1) as PushButton;
             //panel.AddStackedItems(button2, button3);
-            IList<RibbonItem> stackedButtons = panel.AddStackedItems(button4, button3, button6);
-            //PushButton btn4 = panel.AddItem(button4) as PushButton;
+            //IList<RibbonItem> stackedButtons = panel.AddStackedItems(button4, button3, button6);
             PushButton btn9 = panel.AddItem(button_09) as PushButton;
             PushButton btn10 = panel.AddItem(button_10) as PushButton;
             PushButton btn11 = panel.AddItem(button_11) as PushButton;
